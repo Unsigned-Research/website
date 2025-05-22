@@ -210,7 +210,7 @@ export default function Page() {
                     <Shield size={18} className="text-white/90" />
                   </div>
                   <div>
-                    <h3 className="text-base md:text-lg font-medium text-white/90 drop-shadow-md">Risk First</h3>
+                    <h3 className="text-base md:text-lg font-medium text-white/90 drop-shadow-md">Risk Management First</h3>
                     <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
                       Every decision begins with rigorous identification, measurement and management of risk.
                     </p>
@@ -396,7 +396,11 @@ export default function Page() {
       )}
 
       {/* Sticky Navigation */}
-      <div className="fixed top-0 right-0 h-screen flex items-center z-50 px-4">
+      <div className="fixed right-0 z-50 px-4
+        top-4 bottom-auto items-start
+        md:top-0 md:bottom-auto md:h-screen md:items-center
+        flex
+      ">
         <nav className="py-4 px-2 bg-neutral-900/30 backdrop-blur-lg rounded-lg">
           <ul className="space-y-6">
             {sections.map(({ id, label }) => (
