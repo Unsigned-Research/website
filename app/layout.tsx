@@ -3,7 +3,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Unsigned Research',
-  description: 'Proprietary trading ',
+  description: 'Science-backed Proprietary Trading',
   generator: 'UR TEAM',
 }
 
