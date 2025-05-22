@@ -24,30 +24,26 @@ This will generate a static `out` directory.
 
 ## Deploying to GitHub Pages
 
-### 1. Install `gh-pages` (if not already installed)
-```sh
-pnpm add -D gh-pages
-```
+There are two main deployment scripts available:
 
-### 2. Add the deploy script to your `package.json`
-Add the following to your `scripts` section:
-```json
-"deploy": "gh-pages -d out"
-```
-
-### 3. Deploy
-Run:
+### 1. Standard Deploy
+This will build and deploy your site to GitHub Pages using the default configuration.
 ```sh
 pnpm run deploy
 ```
-This will push the contents of the `out` directory to the `gh-pages` branch.
 
-### 4. Configure GitHub Pages
-- Go to your repository on GitHub.
-- Navigate to **Settings > Pages**.
-- Set the source to the `gh-pages` branch and root (`/`).
+### 2. Custom Domain Deploy
+If you need to deploy with a custom domain (using the `CNAME` file), use:
+```sh
+pnpm run deploy:custom
+```
 
-Your site will be live at `https://<your-username>.github.io/<your-repo>/`.
+Both scripts will:
+- Clean previous builds
+- Build the static site
+- Copy the `CNAME` file (for custom domains)
+- Add a `.nojekyll` file
+- Deploy the contents of the `out` directory to the `gh-pages` branch using `gh-pages`
 
 ---
 
