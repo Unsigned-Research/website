@@ -21,15 +21,15 @@ const montserrat = Montserrat({
 })
 
 const sections = [
-  { id: "hero", label: "Hero" },
+  { id: "home", label: "Home" },
   { id: "about", label: "About" },
-  { id: "mission", label: "Ethos" },
+  { id: "ethos", label: "Ethos" },
   { id: "values", label: "Values" },
   { id: "connect", label: "Connect" },
 ]
 
 export default function Page() {
-  const [activeSection, setActiveSection] = useState("hero")
+  const [activeSection, setActiveSection] = useState("home")
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
   const contentRef = useRef<HTMLDivElement>(null)
@@ -118,7 +118,7 @@ export default function Page() {
       <div ref={contentRef} className="relative z-10">
         {/* Hero Section with centered text */}
         <section
-          ref={(el: HTMLDivElement | null) => { sectionRefs.current.hero = el; }}
+          ref={(el: HTMLDivElement | null) => { sectionRefs.current.home = el; }}
           id="hero"
           className="min-h-screen flex items-center justify-center"
         >
@@ -164,19 +164,22 @@ export default function Page() {
               </h2>
               <div className="space-y-4">
                 <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-                  Unsigned Research Ltd is a UK proprietary trading company specialising in systematic crypto‑derivative strategies. Our team of quantitative researchers, engineers, and risk specialists design, test, and deploy code‑driven strategies on a vertically integrated stack that spans data ingestion, research, order execution, and real‑time risk. Capital is 100% owned by the firm; no external assets are managed.
+                  Unsigned Research is driven by a multidisciplinary team of quantitative scientists, engineers, and risk professionals whose credentials span deep-tech breakthroughs with proven commercal applications and doctoral programmes in applied mathematics at the world's leading universities. This collective expertise grounds our work in both academic rigour and real‑world trading experience.
                 </p>
                 <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-                  We treat markets as data streams. Robust research pipelines translate signal discovery into production code, and automated controls enforce position limits, scenario stress tests, and kill‑switches. Continuous monitoring and post‑trade analytics close the feedback loop for iterative improvement.
+                  We deliberately pursue a narrow‑but‑deep research agenda: proven techniques from traditional finance are re‑examined through a logical, bottom‑up lens before being encoded into algorithms. The result is a vertically integrated, full‑stack asset‑management platform purpose‑built for digital‑asset markets and refined through more than five years of live, battle‑tested trading.
+                </p>
+                <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
+                  As a crypto‑native firm, we hold Bitcoin on our balance sheet. This conviction, combined with conservative risk parameters, delivers competitive returns and helps secure the long‑term success of the company.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* Mission Section */}
+          {/* Etho Section */}
           <section
-            ref={(el: HTMLDivElement | null) => { sectionRefs.current.mission = el; }}
-            id="mission"
+            ref={(el: HTMLDivElement | null) => { sectionRefs.current.ethos = el; }}
+            id="ethos"
             className="min-h-screen py-24 px-6 md:px-12 lg:px-24 flex items-center bg-transparent"
           >
             <div className="max-w-4xl">
@@ -184,12 +187,18 @@ export default function Page() {
                 Ethos
               </h2>
               <div className="space-y-4"> 
-              <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-              Unsigned Research applies a science‑first discipline to everything we build. Each strategy begins as a falsifiable hypothesis and is refined through robust statistical testing and continuous live‑monitoring, turning market data into a repeatable and adaptive edge.
-              </p>
-              <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-              Our scientific approach is anchored by an uncompromising ethical framework and aligned incentives. All capital at risk is proprietary, and every participant shares the same exposures, reinforcing accountability, long‑term sustainability and the integrity of the markets in which we operate.
-              </p>
+                <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
+                  We operate as a true meritocracy—ideas are evaluated on their correctness, not the seniority of the speaker, and our organisational hierarchy remains deliberately flat. Integrity is non‑negotiable; the highest ethical standards inform every action we take.
+                </p>
+                <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
+                  A long‑term perspective shapes all strategic choices, favouring the durability of return streams over short‑term gains.
+                </p>
+                <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
+                  We believe deeply in the societal value of decentralised, distributed networks and actively contribute to their growth.
+                </p>
+                <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
+                  Incentives are designed with equal care: every team member is vested in the firm and rewarded directly in line with the measurable impact of their work on our market performance.
+                </p>
               </div>
             </div>
           </section>
@@ -318,20 +327,9 @@ export default function Page() {
                   <h3 className="text-white text-sm font-medium mb-4">Follow Us</h3>
                   <div className="flex space-x-4">
                     <a href="https://x.com/unsignedre" className="text-white/70 hover:text-white transition-colors">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-x"
-                      >
-                        <path d="M18 6 6 18" />
-                        <path d="m6 6 12 12" />
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 120 120" fill="none">
+                        <rect width="120" height="120" fill="black"/>
+                        <path d="M87.6 20H104L72.8 57.1L109 100H84.2L62.7 75.1L38.6 100H22.2L55.1 60.9L20 20H45.6L65.7 42.9L87.6 20ZM83.1 92.2H90.9L47.3 27.2H39.1L83.1 92.2Z" fill="white"/>
                       </svg>
                       <span className="sr-only">X (Twitter)</span>
                     </a>
