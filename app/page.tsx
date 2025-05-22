@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { motion } from "framer-motion"
+import { motion, easeInOut } from "framer-motion"
 import BeamsBackground from "@/components/kokonutui/beams-background"
 import { Montserrat } from "next/font/google"
 import { cn } from "@/lib/utils"
@@ -23,9 +23,8 @@ const montserrat = Montserrat({
 const sections = [
   { id: "hero", label: "Hero" },
   { id: "about", label: "About" },
-  { id: "mission", label: "Mission" },
+  { id: "mission", label: "Ethos" },
   { id: "values", label: "Values" },
-  { id: "promise", label: "Promise" },
   { id: "connect", label: "Connect" },
 ]
 
@@ -36,7 +35,23 @@ export default function Page() {
   const contentRef = useRef<HTMLDivElement>(null)
 
   const scrollToSection = (sectionId: string) => {
-    sectionRefs.current[sectionId]?.scrollIntoView({ behavior: "smooth" })
+    const target = sectionRefs.current[sectionId]
+    if (!target) return
+    const startY = window.scrollY
+    const endY = target.getBoundingClientRect().top + window.scrollY
+    const duration = 250 // ms
+    const startTime = performance.now()
+
+    function animateScroll(currentTime: number) {
+      const elapsed = currentTime - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const ease = easeInOut(progress)
+      window.scrollTo(0, startY + (endY - startY) * ease)
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll)
+      }
+    }
+    requestAnimationFrame(animateScroll)
   }
 
   useEffect(() => {
@@ -103,7 +118,7 @@ export default function Page() {
       <div ref={contentRef} className="relative z-10">
         {/* Hero Section with centered text */}
         <section
-          ref={(el) => (sectionRefs.current.hero = el)}
+          ref={(el: HTMLDivElement | null) => { sectionRefs.current.hero = el; }}
           id="hero"
           className="min-h-screen flex items-center justify-center"
         >
@@ -139,7 +154,7 @@ export default function Page() {
         <div>
           {/* About Section */}
           <section
-            ref={(el) => (sectionRefs.current.about = el)}
+            ref={(el: HTMLDivElement | null) => { sectionRefs.current.about = el; }}
             id="about"
             className="min-h-screen py-24 px-6 md:px-12 lg:px-24 flex items-center bg-transparent"
           >
@@ -160,23 +175,28 @@ export default function Page() {
 
           {/* Mission Section */}
           <section
-            ref={(el) => (sectionRefs.current.mission = el)}
+            ref={(el: HTMLDivElement | null) => { sectionRefs.current.mission = el; }}
             id="mission"
             className="min-h-screen py-24 px-6 md:px-12 lg:px-24 flex items-center bg-transparent"
           >
             <div className="max-w-4xl">
               <h2 className="text-2xl md:text-3xl font-semibold mb-6 tracking-tighter drop-shadow-lg text-white">
-                Commitment
+                Ethos
               </h2>
+              <div className="space-y-4"> 
               <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-                We advance market efficiency and safeguard capital by applying disciplined risk management, transparent reporting, and incentive‑aligned trading. Each strategy is built to preserve capital first and deliver repeatable, risk‑adjusted returns without hidden costs or unintended exposures.
+              Unsigned Research applies a science‑first discipline to everything we build. Each strategy begins as a falsifiable hypothesis and is refined through robust statistical testing and continuous live‑monitoring, turning market data into a repeatable and adaptive edge.
               </p>
+              <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
+              Our scientific approach is anchored by an uncompromising ethical framework and aligned incentives. All capital at risk is proprietary, and every participant shares the same exposures, reinforcing accountability, long‑term sustainability and the integrity of the markets in which we operate.
+              </p>
+              </div>
             </div>
           </section>
 
           {/* Values Section */}
           <section
-            ref={(el) => (sectionRefs.current.values = el)}
+            ref={(el: HTMLDivElement | null) => { sectionRefs.current.values = el; }}
             id="values"
             className="min-h-screen py-24 px-6 md:px-12 lg:px-24 flex items-center bg-transparent"
           >
@@ -184,7 +204,7 @@ export default function Page() {
               <h2 className="text-2xl md:text-3xl font-semibold mb-6 tracking-tighter drop-shadow-lg text-white">
                 Values
               </h2>
-              <ul className="space-y-6">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <li className="flex items-start gap-4">
                   <div className="mt-0.5 bg-white/10 p-2 rounded-full backdrop-blur-sm">
                     <Shield size={18} className="text-white/90" />
@@ -255,27 +275,9 @@ export default function Page() {
             </div>
           </section>
 
-          {/* Promise Section */}
-          <section
-            ref={(el) => (sectionRefs.current.promise = el)}
-            id="promise"
-            className="min-h-screen py-24 px-6 md:px-12 lg:px-24 flex items-center bg-transparent"
-          >
-            <div className="max-w-4xl">
-              <h2 className="text-2xl md:text-3xl font-semibold mb-6 tracking-tighter drop-shadow-lg text-white">
-                Promise
-              </h2>
-              <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-                Unsigned Research delivers world‑class systematic strategies that never impose hidden costs or
-                unnecessary risks on partners. Incentives are fully aligned, embedding accountability and responsible
-                risk‑taking into every trade.
-              </p>
-            </div>
-          </section>
-
           {/* Connect Section */}
           <section
-            ref={(el) => (sectionRefs.current.connect = el)}
+            ref={(el: HTMLDivElement | null) => { sectionRefs.current.connect = el; }}
             id="connect"
             className="min-h-screen py-24 px-6 md:px-12 lg:px-24 flex items-center bg-transparent"
           >

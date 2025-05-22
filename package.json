@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export",
-    "deploy": "gh-pages -d out"
+    "deploy": "rm -rf out .next && GITHUB_PAGES=true pnpm run build && cp CNAME out/CNAME && touch out/.nojekyll && pnpm dlx gh-pages -d out",
+    "deploy:custom": "rm -rf out .next && CUSTOM_DOMAIN=true pnpm run build && cp CNAME out/CNAME && touch out/.nojekyll && pnpm dlx gh-pages -d out"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
