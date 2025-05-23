@@ -145,7 +145,7 @@ export default function Page() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Institutional‑grade risk management and proprietary technology capturing edge in digital‑asset markets.
+              Institutional‑grade Systematic Alpha in digital‑asset markets.
             </motion.p>
           </div>
         </section>
@@ -164,13 +164,16 @@ export default function Page() {
               </h2>
               <div className="space-y-4">
                 <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-                  Unsigned Research is driven by a multidisciplinary team of quantitative scientists, engineers, and risk professionals whose credentials span deep-tech breakthroughs with proven commercal applications and doctoral programmes in applied mathematics at the world's leading universities. This collective expertise grounds our work in both academic rigour and real‑world trading experience.
+                  Unsigned Research is a proprietary trading firm specialising in medium frequency, quant-based systematic strategies within the digital asset space.
                 </p>
                 <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-                  We deliberately pursue a narrow‑but‑deep research agenda: proven techniques from traditional finance are re‑examined through a logical, bottom‑up lens before being encoded into algorithms. The result is a vertically integrated, full‑stack asset‑management platform purpose‑built for digital‑asset markets and refined through more than five years of live, battle‑tested trading.
+                  Our team combines quantitative scientists, engineers, and risk professionals whose credentials range from pioneering deep-tech innovations with proven commercial applications to advanced doctoral research in applied mathematics at the world's leading universities. This multidisciplinary expertise anchors our strategies firmly in both academic rigour and practical trading experience.
                 </p>
                 <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-                  As a crypto‑native firm, we hold Bitcoin on our balance sheet. This conviction, combined with conservative risk parameters, delivers competitive returns and helps secure the long‑term success of the company.
+                  We adopt a focused research approach, re-examining proven techniques from traditional finance through a logical, bottom-up perspective before encoding them into robust algorithms. The result is a vertically integrated, full-stack asset management platform designed specifically for digital asset markets and continuously refined through more than five years of live, battle-tested trading.
+                </p>
+                <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
+                  Being a crypto-native firm, we hold Bitcoin on our balance sheet. This commitment, coupled with conservative risk parameters, allows us to deliver competitive returns and ensures the long-term sustainability of our business.
                 </p>
               </div>
             </div>
@@ -188,16 +191,16 @@ export default function Page() {
               </h2>
               <div className="space-y-4"> 
                 <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-                  We operate as a true meritocracy—ideas are evaluated on their correctness, not the seniority of the speaker, and our organisational hierarchy remains deliberately flat. Integrity is non‑negotiable; the highest ethical standards inform every action we take.
+                  We embrace a meritocratic culture, evaluating ideas based on correctness rather than seniority, and maintain a deliberately flat organisational structure. Integrity guides everything we do, and upholding the highest ethical standards is non-negotiable.
                 </p>
                 <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-                  A long‑term perspective shapes all strategic choices, favouring the durability of return streams over short‑term gains.
+                  Our strategic decisions reflect a long-term perspective, which means we prioritise sustainable returns over immediate gains.
                 </p>
                 <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-                  We believe deeply in the societal value of decentralised, distributed networks and actively contribute to their growth.
+                  We deeply believe in the societal benefits of decentralised and distributed networks, and actively contribute to their development.
                 </p>
                 <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
-                  Incentives are designed with equal care: every team member is vested in the firm and rewarded directly in line with the measurable impact of their work on our market performance.
+                  Our incentive structures also reflect these core values, as each team member is vested in the firm and rewarded directly according to their measurable contributions to our market success.
                 </p>
               </div>
             </div>
