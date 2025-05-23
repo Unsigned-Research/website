@@ -315,7 +315,7 @@ export default function Page() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                   <h3 className="text-white text-sm font-medium mb-4">Unsigned Research</h3>
-                  <p className="text-white/70 text-xs">Precision‑Built Systematic Alpha in digital‑asset markets.</p>
+                  <p className="text-white/70 text-xs">Institutional‑grade Systematic Alpha in digital‑asset markets.</p>
                 </div>
                 <div>
                   <h3 className="text-white text-sm font-medium mb-4">Contact</h3>
