@@ -175,6 +175,9 @@ export default function Page() {
                 <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
                   Being a crypto-native firm, we hold Bitcoin on our balance sheet. This commitment, coupled with conservative risk parameters, allows us to deliver competitive returns and ensures the long-term sustainability of our business.
                 </p>
+                <p className="text-xs md:text-sm text-white/90 drop-shadow-md">
+                  UR is not regulated and will never solicit capital from external investors—whether institutional or retail.
+                </p>
               </div>
             </div>
           </section>
