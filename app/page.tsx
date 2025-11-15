@@ -257,7 +257,7 @@ export default function Page() {
                       href="https://github.com/Unsigned-Research"
                       target="_blank"
                       rel="noreferrer"
-                      className="border border-[var(--text-primary)] px-6 py-3 text-xs uppercase tracking-[0.3em] text-[var(--text-primary)] transition-colors hover:text-white hover:bg-[var(--text-primary)]"
+                      className="border border-[var(--text-primary)] px-6 py-3 text-xs uppercase tracking-[0.3em] text-[var(--text-primary)] transition-colors hover:text-[var(--bg-base)] hover:bg-[var(--text-primary)]"
                     >
                       GitHub
                     </a>
@@ -297,8 +297,7 @@ export default function Page() {
                     counterparty exposure, and execution cost.
                   </p>
                   <p>
-                    As a crypto-native firm we hold Bitcoin on our balance sheet and pair that conviction with conservative risk parameters,
-                    emphasising drawdown control and capital preservation without sacrificing innovation.
+                    As a crypto-native firm, we hold Bitcoin on our balance sheet to ensure the company&rsquo;s long-term sustainability, pairing that conviction with conservative risk parameters that prioritise drawdown control and capital preservation without sacrificing innovation.
                   </p>
                 </div>
               </div>
@@ -358,12 +357,11 @@ export default function Page() {
                 <div className="col-span-12 space-y-6 text-sm leading-relaxed text-[var(--text-secondary)] md:col-span-8 md:text-base">
                   <p>
                     For technical due diligence, strategy discussions, or talent conversations, contact the partners’ office directly.
-                    We respond to qualified enquiries with the same discipline we apply to our research.
                   </p>
                   <div className="flex flex-wrap items-center gap-6 text-sm">
                     <a
                       href="mailto:enquiries@unsigned-research.com"
-                      className="border border-[var(--text-primary)] px-5 py-3 text-xs uppercase tracking-[0.3em] text-[var(--text-primary)] transition-colors hover:bg-[var(--text-primary)] hover:text-white"
+                      className="border border-[var(--text-primary)] px-5 py-3 text-xs uppercase tracking-[0.3em] text-[var(--text-primary)] transition-colors hover:bg-[var(--text-primary)] hover:text-[var(--bg-base)]"
                     >
                       enquiries@unsigned-research.com
                     </a>
