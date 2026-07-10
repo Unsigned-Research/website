@@ -113,9 +113,9 @@
     .tname { white-space: normal !important; }
   }
   @media (max-width: 560px) {
-    .team2 > .tcell { flex-direction: column !important; gap: 1.1rem !important; }
-    .tportrait { width: clamp(180px,56vw,216px) !important; }
-    .team2 .bio { text-align: left !important; }
+    .team2 > .tcell { flex-direction: column !important; align-items: center !important; text-align: center !important; gap: 1.1rem !important; max-width: 320px !important; margin-left: auto !important; margin-right: auto !important; }
+    .tportrait { width: 100% !important; }
+    .team2 .bio { text-align: justify !important; hyphens: auto !important; -webkit-hyphens: auto !important; }
   }
 </style>
 </helmet>
@@ -168,12 +168,22 @@
     <div style="max-width:1240px; margin:0 auto; padding:clamp(2.75rem,5vw,4rem) clamp(1.25rem,4vw,3rem);">
       <div data-reveal class="mono" style="font-size:0.72rem; letter-spacing:0.16em; font-weight:600; margin-bottom:clamp(1.5rem,3vw,2.25rem);">AT A GLANCE</div>
       <div ref="{{ statsRef }}" class="stats-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:0; border-top:1px solid var(--inv-line);">
-        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
-          <div data-reveal style="padding:1.75rem 1.5rem 0 0;">
-            <div class="stat-val" data-count="{{ s.value }}" style="font-size:clamp(2.2rem,4.2vw,3.6rem); font-weight:500; line-height:1; letter-spacing:-0.025em;">{{ s.value }}</div>
-            <div class="mono" style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.9rem;">{{ s.label }}</div>
+        <div data-reveal style="padding:1.75rem 1.5rem 0 0;">
+            <div class="stat-val" data-count="5+" style="font-size:clamp(2.2rem,4.2vw,3.6rem); font-weight:500; line-height:1; letter-spacing:-0.025em;">5+</div>
+            <div class="mono" style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.9rem;">Years live trading</div>
           </div>
-        </sc-for>
+        <div data-reveal style="padding:1.75rem 1.5rem 0 0;">
+            <div class="stat-val" data-count="10M+" style="font-size:clamp(2.2rem,4.2vw,3.6rem); font-weight:500; line-height:1; letter-spacing:-0.025em;">10M+</div>
+            <div class="mono" style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.9rem;">Data points / day</div>
+          </div>
+        <div data-reveal style="padding:1.75rem 1.5rem 0 0;">
+            <div class="stat-val" data-count="100+" style="font-size:clamp(2.2rem,4.2vw,3.6rem); font-weight:500; line-height:1; letter-spacing:-0.025em;">100+</div>
+            <div class="mono" style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.9rem;">Data sources</div>
+          </div>
+        <div data-reveal style="padding:1.75rem 1.5rem 0 0;">
+            <div class="stat-val" data-count="24/7" style="font-size:clamp(2.2rem,4.2vw,3.6rem); font-weight:500; line-height:1; letter-spacing:-0.025em;">24/7</div>
+            <div class="mono" style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.9rem;">Programmatic risk controls</div>
+          </div>
       </div>
     </div>
   </section>
@@ -234,14 +244,30 @@
             <span>What happens</span>
             <span style="color:var(--red);">Risk lens</span>
           </div>
-          <sc-for list="{{ steps }}" as="step" hint-placeholder-count="4">
-            <div data-reveal class="step-row" style="display:grid; grid-template-columns:auto 1.1fr 1.7fr 1.7fr; gap:clamp(1rem,3vw,2.25rem); align-items:baseline; padding:1.5rem 0; border-bottom:1px solid var(--hair);">
-              <span class="mono" style="font-size:0.75rem;">{{ step.n }}</span>
-              <span style="font-size:1.15rem; font-weight:700;">{{ step.title }}</span>
-              <span style="font-size:0.99rem; line-height:1.58;">{{ step.desc }}</span>
-              <span style="font-size:0.99rem; line-height:1.58; padding-left:clamp(1rem,2.5vw,1.75rem); border-left:1px solid var(--red);">{{ step.risk }}</span>
+          <div data-reveal class="step-row" style="display:grid; grid-template-columns:auto 1.1fr 1.7fr 1.7fr; gap:clamp(1rem,3vw,2.25rem); align-items:baseline; padding:1.5rem 0; border-bottom:1px solid var(--hair);">
+              <span class="mono" style="font-size:0.75rem;">01</span>
+              <span style="font-size:1.15rem; font-weight:700;">Signals</span>
+              <span style="font-size:0.99rem; line-height:1.58;">Independent, economically-grounded factors drawn from data the market has yet to price.</span>
+              <span style="font-size:0.99rem; line-height:1.58; padding-left:clamp(1rem,2.5vw,1.75rem); border-left:1px solid var(--red);">Each signal is stress-tested across market regimes before it is allowed to trade.</span>
             </div>
-          </sc-for>
+          <div data-reveal class="step-row" style="display:grid; grid-template-columns:auto 1.1fr 1.7fr 1.7fr; gap:clamp(1rem,3vw,2.25rem); align-items:baseline; padding:1.5rem 0; border-bottom:1px solid var(--hair);">
+              <span class="mono" style="font-size:0.75rem;">02</span>
+              <span style="font-size:1.15rem; font-weight:700;">Portfolio Construction</span>
+              <span style="font-size:0.99rem; line-height:1.58;">Long and short balanced to isolate alpha from beta — market-neutral by construction.</span>
+              <span style="font-size:0.99rem; line-height:1.58; padding-left:clamp(1rem,2.5vw,1.75rem); border-left:1px solid var(--red);">Exposures are bounded and diversified so no single factor or asset can dominate the book.</span>
+            </div>
+          <div data-reveal class="step-row" style="display:grid; grid-template-columns:auto 1.1fr 1.7fr 1.7fr; gap:clamp(1rem,3vw,2.25rem); align-items:baseline; padding:1.5rem 0; border-bottom:1px solid var(--hair);">
+              <span class="mono" style="font-size:0.75rem;">03</span>
+              <span style="font-size:1.15rem; font-weight:700;">Execution</span>
+              <span style="font-size:0.99rem; line-height:1.58;">Cost- and liquidity-aware routing across venues on an owned trading engine.</span>
+              <span style="font-size:0.99rem; line-height:1.58; padding-left:clamp(1rem,2.5vw,1.75rem); border-left:1px solid var(--red);">Slippage, liquidity, and counterparty exposure are measured on every fill.</span>
+            </div>
+          <div data-reveal class="step-row" style="display:grid; grid-template-columns:auto 1.1fr 1.7fr 1.7fr; gap:clamp(1rem,3vw,2.25rem); align-items:baseline; padding:1.5rem 0; border-bottom:1px solid var(--hair);">
+              <span class="mono" style="font-size:0.75rem;">04</span>
+              <span style="font-size:1.15rem; font-weight:700;">Monitoring</span>
+              <span style="font-size:0.99rem; line-height:1.58;">Live performance and model behaviour watched continuously, around the clock.</span>
+              <span style="font-size:0.99rem; line-height:1.58; padding-left:clamp(1rem,2.5vw,1.75rem); border-left:1px solid var(--red);">Automated de-risking and anomaly detection intervene the moment limits are breached.</span>
+            </div>
         </div>
       </div>
     </div>
@@ -296,7 +322,7 @@
   <section id="risk" style="max-width:1240px; margin:0 auto; padding:clamp(3.5rem,7vw,6rem) clamp(1.25rem,4vw,3rem);">
     <div data-reveal style="display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--line); padding-bottom:1.1rem; gap:1rem; flex-wrap:wrap;">
       <span class="mono" style="font-size:0.72rem; letter-spacing:0.16em; font-weight:600;">03 / RISK</span>
-      <span class="mono" style="font-size:0.72rem; letter-spacing:0.16em;">Monitored 4+ years live</span>
+      <span class="mono" style="font-size:0.72rem; letter-spacing:0.16em;">Monitored 5+ years live</span>
     </div>
     <h2 data-reveal style="font-size:clamp(1.9rem,4vw,3.2rem); font-weight:400; line-height:1.12; letter-spacing:-0.01em; margin-top:clamp(1.75rem,4vw,2.5rem); max-width:20ch;">
       A framework, <span style="font-style:italic;">not an afterthought.</span>
@@ -305,13 +331,36 @@
       Robustness is built through a disciplined risk framework, not added after the fact. Across strategies, signals, assets, and execution, risk is continuously measured, diversified, and controlled to support resilience across market regimes.
     </p>
     <div class="risk-grid" style="display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-left:1px solid var(--hair); margin-top:clamp(2.5rem,5vw,3.5rem);">
-      <sc-for list="{{ controls }}" as="c" hint-placeholder-count="6">
-        <div data-reveal style="padding:1.75rem; border-right:1px solid var(--hair); border-bottom:1px solid var(--hair);">
-          <div class="mono" style="font-size:0.72rem; margin-bottom:0.9rem;">{{ c.n }}</div>
-          <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.7rem;">{{ c.title }}</h3>
-          <p style="font-size:0.96rem; line-height:1.58;">{{ c.desc }}</p>
+      <div data-reveal style="padding:1.75rem; border-right:1px solid var(--hair); border-bottom:1px solid var(--hair);">
+          <div class="mono" style="font-size:0.72rem; margin-bottom:0.9rem;">01</div>
+          <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.7rem;">Alpha Diversification</h3>
+          <p style="font-size:0.96rem; line-height:1.58;">We diversify alpha across multiple signals, time horizons, and strategies to reduce dependence on any single source of return.</p>
         </div>
-      </sc-for>
+      <div data-reveal style="padding:1.75rem; border-right:1px solid var(--hair); border-bottom:1px solid var(--hair);">
+          <div class="mono" style="font-size:0.72rem; margin-bottom:0.9rem;">02</div>
+          <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.7rem;">Exposure Limits</h3>
+          <p style="font-size:0.96rem; line-height:1.58;">Exposure is spread across assets, factors, and venues, with limits that prevent over-reliance on any single position or market condition.</p>
+        </div>
+      <div data-reveal style="padding:1.75rem; border-right:1px solid var(--hair); border-bottom:1px solid var(--hair);">
+          <div class="mono" style="font-size:0.72rem; margin-bottom:0.9rem;">03</div>
+          <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.7rem;">Adaptive Positioning</h3>
+          <p style="font-size:0.96rem; line-height:1.58;">Position sizing adjusts to changing volatility, liquidity, and signal confidence, keeping risk aligned with market conditions.</p>
+        </div>
+      <div data-reveal style="padding:1.75rem; border-right:1px solid var(--hair); border-bottom:1px solid var(--hair);">
+          <div class="mono" style="font-size:0.72rem; margin-bottom:0.9rem;">04</div>
+          <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.7rem;">Live Risk Monitoring</h3>
+          <p style="font-size:0.96rem; line-height:1.58;">Proprietary systems continuously compare live trading against expected behaviour, flagging divergence in real time.</p>
+        </div>
+      <div data-reveal style="padding:1.75rem; border-right:1px solid var(--hair); border-bottom:1px solid var(--hair);">
+          <div class="mono" style="font-size:0.72rem; margin-bottom:0.9rem;">05</div>
+          <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.7rem;">Automated Safeguards</h3>
+          <p style="font-size:0.96rem; line-height:1.58;">Anomaly detection and automated controls help protect the book, with alerts routed across critical monitoring channels.</p>
+        </div>
+      <div data-reveal style="padding:1.75rem; border-right:1px solid var(--hair); border-bottom:1px solid var(--hair);">
+          <div class="mono" style="font-size:0.72rem; margin-bottom:0.9rem;">06</div>
+          <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.7rem;">Dynamic De-Risking</h3>
+          <p style="font-size:0.96rem; line-height:1.58;">Exposure is reduced during drawdown or stress events and systematically reintroduced as conditions stabilise.</p>
+        </div>
     </div>
   </section>
 
@@ -327,12 +376,30 @@
             First principles, <span style="font-style:italic;">tested over cycles.</span>
           </h2>
           <div class="values-grid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:0; margin-top:clamp(2.5rem,5vw,3.5rem); border-top:1px solid var(--inv-line);">
-            <sc-for list="{{ values }}" as="v" hint-placeholder-count="6">
-              <div data-reveal style="padding:1.6rem 1.5rem 1.6rem 0; border-bottom:1px solid var(--inv-hair);">
-                <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.55rem;">{{ v.title }}</h3>
-                <p style="font-size:0.98rem; line-height:1.58; max-width:44ch;">{{ v.desc }}</p>
+            <div data-reveal style="padding:1.6rem 1.5rem 1.6rem 0; border-bottom:1px solid var(--inv-hair);">
+                <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.55rem;">Risk Management First</h3>
+                <p style="font-size:0.98rem; line-height:1.58; max-width:44ch;">Capital deploys only once risks are quantified, bounded, and observed.</p>
               </div>
-            </sc-for>
+            <div data-reveal style="padding:1.6rem 1.5rem 1.6rem 0; border-bottom:1px solid var(--inv-hair);">
+                <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.55rem;">First Principles</h3>
+                <p style="font-size:0.98rem; line-height:1.58; max-width:44ch;">We deconstruct complex systems to fundamentals, then rebuild robustly.</p>
+              </div>
+            <div data-reveal style="padding:1.6rem 1.5rem 1.6rem 0; border-bottom:1px solid var(--inv-hair);">
+                <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.55rem;">Precision</h3>
+                <p style="font-size:0.98rem; line-height:1.58; max-width:44ch;">Disciplined scope, every component instrumented for clarity and audit.</p>
+              </div>
+            <div data-reveal style="padding:1.6rem 1.5rem 1.6rem 0; border-bottom:1px solid var(--inv-hair);">
+                <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.55rem;">Meritocracy</h3>
+                <p style="font-size:0.98rem; line-height:1.58; max-width:44ch;">The best idea wins, supported by data — precision outweighs tenure.</p>
+              </div>
+            <div data-reveal style="padding:1.6rem 1.5rem 1.6rem 0; border-bottom:1px solid var(--inv-hair);">
+                <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.55rem;">Future Driven</h3>
+                <p style="font-size:0.98rem; line-height:1.58; max-width:44ch;">We anticipate structural shifts in microstructure, liquidity, and regulation.</p>
+              </div>
+            <div data-reveal style="padding:1.6rem 1.5rem 1.6rem 0; border-bottom:1px solid var(--inv-hair);">
+                <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:0.55rem;">Integrity</h3>
+                <p style="font-size:0.98rem; line-height:1.58; max-width:44ch;">Transparency, accountability, and fairness across partners and trades.</p>
+              </div>
           </div>
         </div>
       </div>
@@ -349,20 +416,46 @@
       An accomplished team,<br /><span style="font-style:italic;">with depth across research, infrastructure, and trading.</span>
     </h2>
     <div class="team2" style="display:grid; grid-template-columns:1fr 1fr; margin-top:clamp(2.5rem,5vw,3.5rem); border-top:1px solid var(--line);">
-      <sc-for list="{{ team }}" as="p" hint-placeholder-count="0">
-        <div class="tcell" data-reveal style="display:flex; gap:clamp(1rem,1.6vw,1.5rem); padding-top:clamp(1.5rem,2.6vw,2rem); padding-bottom:clamp(1.5rem,2.6vw,2rem);">
+      <div class="tcell" data-reveal style="display:flex; gap:clamp(1rem,1.6vw,1.5rem); padding-top:clamp(1.5rem,2.6vw,2rem); padding-bottom:clamp(1.5rem,2.6vw,2rem);">
           <div class="tportrait" style="width:clamp(150px,15vw,182px); aspect-ratio:4/5; flex:none; border:1px solid var(--line); overflow:hidden; background:var(--hair);">
-            <sc-if value="{{ p.photo }}" hint-placeholder-val="{{ false }}">
-              <img src="{{ p.photo }}" alt="{{ p.name }}" draggable="false" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block; filter:grayscale(1) contrast(1.04); user-select:none; -webkit-user-select:none; -webkit-user-drag:none; pointer-events:none;" />
-            </sc-if>
+            <img src="./images/team/charles.jpg" alt="Charles Fried" draggable="false" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block; filter:grayscale(1) contrast(1.04); user-select:none; -webkit-user-select:none; -webkit-user-drag:none; pointer-events:none;" />
           </div>
           <div style="flex:1; min-width:0;">
-            <h3 class="tname" style="font-size:clamp(1.02rem,1.3vw,1.18rem); font-weight:700; line-height:1.2;">{{ p.name }}</h3>
-            <div class="mono" style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; margin:0.45rem 0 0.85rem; color:var(--red);">{{ p.role }}</div>
-            <p class="bio" style="font-size:0.92rem; line-height:1.6; text-align:justify; hyphens:auto; -webkit-hyphens:auto;">{{ p.bio }}</p>
+            <h3 class="tname" style="font-size:clamp(1.02rem,1.3vw,1.18rem); font-weight:700; line-height:1.2;">Charles Fried</h3>
+            <div class="mono" style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; margin:0.45rem 0 0.85rem; color:var(--red);">Chief Executive Officer</div>
+            <p class="bio" style="font-size:0.92rem; line-height:1.6; text-align:justify; hyphens:auto; -webkit-hyphens:auto;">Leads firm strategy, partnerships, and portfolio management, bringing experience as a serial software entrepreneur with a track record building deep-tech ventures and scaling technology-led businesses. Focuses on aligning research, infrastructure, capital relationships, and execution into a disciplined institutional platform.</p>
           </div>
         </div>
-      </sc-for>
+      <div class="tcell" data-reveal style="display:flex; gap:clamp(1rem,1.6vw,1.5rem); padding-top:clamp(1.5rem,2.6vw,2rem); padding-bottom:clamp(1.5rem,2.6vw,2rem);">
+          <div class="tportrait" style="width:clamp(150px,15vw,182px); aspect-ratio:4/5; flex:none; border:1px solid var(--line); overflow:hidden; background:var(--hair);">
+            <img src="./images/team/alex.jpg" alt="Dr. Alexander Nestor-Bergmann" draggable="false" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block; filter:grayscale(1) contrast(1.04); user-select:none; -webkit-user-select:none; -webkit-user-drag:none; pointer-events:none;" />
+          </div>
+          <div style="flex:1; min-width:0;">
+            <h3 class="tname" style="font-size:clamp(1.02rem,1.3vw,1.18rem); font-weight:700; line-height:1.2;">Dr. Alexander Nestor-Bergmann</h3>
+            <div class="mono" style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; margin:0.45rem 0 0.85rem; color:var(--red);">Chief Technology Officer</div>
+            <p class="bio" style="font-size:0.92rem; line-height:1.6; text-align:justify; hyphens:auto; -webkit-hyphens:auto;">Oversees technology, research infrastructure, and quantitative systems. Brings over a decade of experience in quantitative research, machine learning, and applied mathematics, with a PhD in Applied Mathematics and prior experience as a Research Fellow at the University of Cambridge.</p>
+          </div>
+        </div>
+      <div class="tcell" data-reveal style="display:flex; gap:clamp(1rem,1.6vw,1.5rem); padding-top:clamp(1.5rem,2.6vw,2rem); padding-bottom:clamp(1.5rem,2.6vw,2rem);">
+          <div class="tportrait" style="width:clamp(150px,15vw,182px); aspect-ratio:4/5; flex:none; border:1px solid var(--line); overflow:hidden; background:var(--hair);">
+            <img src="./images/team/vincent.jpg" alt="Vincent Drigues" draggable="false" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block; filter:grayscale(1) contrast(1.04); user-select:none; -webkit-user-select:none; -webkit-user-drag:none; pointer-events:none;" />
+          </div>
+          <div style="flex:1; min-width:0;">
+            <h3 class="tname" style="font-size:clamp(1.02rem,1.3vw,1.18rem); font-weight:700; line-height:1.2;">Vincent Drigues</h3>
+            <div class="mono" style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; margin:0.45rem 0 0.85rem; color:var(--red);">Chief Financial Officer</div>
+            <p class="bio" style="font-size:0.92rem; line-height:1.6; text-align:justify; hyphens:auto; -webkit-hyphens:auto;">Oversees finance, treasury, governance, and risk oversight, with experience managing finance and operations across multiple startups. Previously served as CFO of a clinical-stage gene-therapy company and began his career in audit at EY.</p>
+          </div>
+        </div>
+      <div class="tcell" data-reveal style="display:flex; gap:clamp(1rem,1.6vw,1.5rem); padding-top:clamp(1.5rem,2.6vw,2rem); padding-bottom:clamp(1.5rem,2.6vw,2rem);">
+          <div class="tportrait" style="width:clamp(150px,15vw,182px); aspect-ratio:4/5; flex:none; border:1px solid var(--line); overflow:hidden; background:var(--hair);">
+            <img src="./images/team/aabir.jpg" alt="Aabir Fauzan" draggable="false" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block; filter:grayscale(1) contrast(1.04); user-select:none; -webkit-user-select:none; -webkit-user-drag:none; pointer-events:none;" />
+          </div>
+          <div style="flex:1; min-width:0;">
+            <h3 class="tname" style="font-size:clamp(1.02rem,1.3vw,1.18rem); font-weight:700; line-height:1.2;">Aabir Fauzan</h3>
+            <div class="mono" style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; margin:0.45rem 0 0.85rem; color:var(--red);">Senior Quant</div>
+            <p class="bio" style="font-size:0.92rem; line-height:1.6; text-align:justify; hyphens:auto; -webkit-hyphens:auto;">Focuses on alpha research, portfolio construction, and live strategy management across systematic programs. Works across signal discovery, model validation, risk calibration, and allocation, translating research into production-ready strategies.</p>
+          </div>
+        </div>
     </div>
   </section>
 
@@ -643,13 +736,13 @@ class Component extends DCLogic {
     };
     const items = els.map((el) => ({ el, ...parse(el.getAttribute('data-count') || el.textContent) }));
     const fmt = (v, it) => it.prefix + (it.decimals ? v.toFixed(it.decimals) : Math.round(v).toString()) + it.suffix;
-    items.forEach((it) => { it.el.textContent = fmt(0, it); });
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) { items.forEach((it) => { it.el.textContent = fmt(it.target, it); }); return; }
     let started = false;
     const run = () => {
       if (started) return; started = true;
-      const dur = 1100, t0 = performance.now();
+      items.forEach((it) => { it.el.textContent = fmt(0, it); });
+      const dur = 1350, t0 = performance.now();
       const ease = (x) => 1 - Math.pow(1 - x, 3);
       const timer = setInterval(() => {
         const p = Math.min(1, (performance.now() - t0) / dur), e = ease(p);
