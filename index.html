@@ -14,6 +14,19 @@
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="./images/favicon.png">
 <meta name="ext-resource-dependency" content="./images/favicon.png">
+<meta name="ext-resource-dependency" content="./images/og-image.png">
+<title>Unsigned Research — Risk-Engineered Systematic Alpha</title>
+<meta name="description" content="Systematic strategies for digital-asset markets, built across research, execution, and risk.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Unsigned Research — Risk-Engineered Systematic Alpha">
+<meta property="og:description" content="Systematic strategies for digital-asset markets, built across research, execution, and risk.">
+<meta property="og:image" content="./images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Unsigned Research — Risk-Engineered Systematic Alpha">
+<meta name="twitter:description" content="Systematic strategies for digital-asset markets, built across research, execution, and risk.">
+<meta name="twitter:image" content="./images/og-image.png">
 <meta name="ext-resource-dependency" content="./images/team/charles.jpg">
 <meta name="ext-resource-dependency" content="./images/team/alex.jpg">
 <meta name="ext-resource-dependency" content="./images/team/vincent.jpg">
@@ -321,14 +334,16 @@
       An accomplished team,<br /><span style="font-style:italic;">with depth across research, infrastructure, and trading.</span>
     </h2>
     <div class="team-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(1.25rem,2.5vw,2rem); margin-top:clamp(2.5rem,5vw,3.5rem);">
-      <sc-for list="{{ team }}" as="p" hint-placeholder-count="4">
+      <sc-for list="{{ team }}" as="p" hint-placeholder-count="0">
         <div data-reveal>
           <div style="aspect-ratio:3/4; border:1px solid var(--line); margin-bottom:1rem; overflow:hidden; background:var(--hair);">
-            <img src="{{ p.photo }}" alt="{{ p.name }}" draggable="false" hint-placeholder-src="" style="width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1) contrast(1.04); transition:filter 0.3s ease; user-select:none; -webkit-user-select:none; -webkit-user-drag:none; pointer-events:none;" />
+            <sc-if value="{{ p.photo }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ p.photo }}" alt="{{ p.name }}" draggable="false" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1) contrast(1.04); transition:filter 0.3s ease; user-select:none; -webkit-user-select:none; -webkit-user-drag:none; pointer-events:none;" />
+            </sc-if>
           </div>
           <h3 style="font-size:1.15rem; font-weight:700;">{{ p.name }}</h3>
           <div class="mono" style="font-size:0.74rem; letter-spacing:0.1em; text-transform:uppercase; margin:0.5rem 0 0.9rem; color:var(--red);">{{ p.role }}</div>
-          <p class="bio" style="font-size:0.94rem; line-height:1.62; text-align:justify; hyphens:auto; -webkit-hyphens:auto;">{{ p.bio }}</p>
+          <p class="bio" style="font-size:0.94rem; line-height:1.62; text-align:left;">{{ p.bio }}</p>
         </div>
       </sc-for>
     </div>
@@ -539,44 +554,62 @@ class Component extends DCLogic {
     window.addEventListener('keydown', this._onKey);
 
     this._initStats();
-    this._initBios();
-    this._bioResize = () => { clearTimeout(this._bioT); this._bioT = setTimeout(() => this._initBios(), 200); };
-    window.addEventListener('resize', this._bioResize);
   }
 
-  _initBios() {
+  _initUnderlines() {
     const root = this.rootRef.current;
     if (!root) return;
-    const ps = Array.from(root.querySelectorAll('.bio'));
-    if (!ps.length) return;
-    const MIN = 0.82, MAX = 0.96, STEP = 0.02;
-    const ACCEPT = 0.86;
-    const meas = document.createElement('span');
-    meas.style.cssText = 'position:absolute; visibility:hidden; white-space:nowrap; left:-9999px; top:0;';
-    document.body.appendChild(meas);
-    const results = ps.map((p) => {
-      const cw = p.clientWidth || 1;
-      const cs = getComputedStyle(p);
-      meas.style.fontFamily = cs.fontFamily;
-      meas.style.fontWeight = cs.fontWeight;
-      meas.textContent = p.textContent;
-      let best = null;
-      for (let fs = MAX; fs >= MIN - 1e-6; fs -= STEP) {
-        meas.style.fontSize = fs + 'rem';
-        const T = meas.getBoundingClientRect().width;
-        const L = Math.max(1, Math.round(T / cw));
-        const fill = T / (L * cw);
-        if (!best || fill > best.fill) best = { fs, fill };
-      }
-      return { p, best };
-    });
-    document.body.removeChild(meas);
-    const worst = Math.min.apply(null, results.map((r) => r.best.fill));
-    if (worst < ACCEPT) {
-      ps.forEach((p) => { p.style.textAlign = 'left'; p.style.fontSize = '0.94rem'; });
-    } else {
-      results.forEach((r) => { r.p.style.textAlign = 'justify'; r.p.style.fontSize = r.best.fs + 'rem'; });
-    }
+    const h2s = Array.from(root.querySelectorAll('section h2'));
+    if (!h2s.length) return;
+    const items = h2s.map((h) => { h.style.position = 'relative'; return { h, bars: [], on: false }; });
+    const build = (it) => {
+      const h = it.h;
+      it.bars.forEach((b) => b.remove());
+      it.bars = [];
+      const hb = h.getBoundingClientRect();
+      const fs = parseFloat(getComputedStyle(h).fontSize) || 24;
+      const range = document.createRange();
+      range.selectNodeContents(h);
+      const rects = Array.from(range.getClientRects()).filter((r) => r.width > 4 && r.height > 4);
+      // merge rect fragments that sit on the same visual line
+      const lines = [];
+      rects.forEach((r) => {
+        let ln = lines.find((l) => Math.abs(l.top - r.top) < fs * 0.6);
+        if (ln) { ln.left = Math.min(ln.left, r.left); ln.right = Math.max(ln.right, r.right); }
+        else lines.push({ top: r.top, left: r.left, right: r.right });
+      });
+      lines.forEach((ln, i) => {
+        const bar = document.createElement('span');
+        bar.setAttribute('aria-hidden', 'true');
+        bar.style.cssText = 'position:absolute; height:2px; background:var(--red); left:' + (ln.left - hb.left) + 'px; top:' + ((ln.top - hb.top) + fs * 1.02) + 'px; width:' + (ln.right - ln.left) + 'px; transform:scaleX(0); transform-origin:left center; transition:transform 0.5s cubic-bezier(0.16,1,0.3,1); transition-delay:' + (i * 0.09) + 's; pointer-events:none;';
+        h.appendChild(bar);
+        it.bars.push(bar);
+      });
+      it.bars.forEach((b) => { b.style.transform = it.on ? 'scaleX(1)' : 'scaleX(0)'; });
+    };
+    const setOn = (it, on) => {
+      if (it.on === on) return;
+      it.on = on;
+      const n = it.bars.length;
+      it.bars.forEach((b, i) => {
+        b.style.transitionDelay = (on ? i * 0.09 : (n - 1 - i) * 0.05) + 's';
+        b.style.transform = on ? 'scaleX(1)' : 'scaleX(0)';
+      });
+    };
+    this._underlineCheck = () => {
+      const vh = window.innerHeight || 800;
+      items.forEach((it) => {
+        const r = it.h.getBoundingClientRect();
+        setOn(it, r.top < vh * 0.72 && r.bottom > vh * 0.14);
+      });
+    };
+    const rebuild = () => { items.forEach(build); this._underlineCheck(); };
+    rebuild();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(rebuild);
+    this._ulResize = () => { clearTimeout(this._ulT); this._ulT = setTimeout(rebuild, 150); };
+    window.addEventListener('scroll', this._underlineCheck, { passive: true });
+    document.addEventListener('scroll', this._underlineCheck, { passive: true, capture: true });
+    window.addEventListener('resize', this._ulResize, { passive: true });
   }
 
   _initStats() {
@@ -615,7 +648,6 @@ class Component extends DCLogic {
     this._statsCheck();
     window.addEventListener('scroll', this._statsCheck, { passive: true });
     document.addEventListener('scroll', this._statsCheck, { passive: true, capture: true });
-    setTimeout(run, 4000);
   }
 
   _initWalk() {
@@ -658,6 +690,8 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount() {
+    if (this._underlineCheck) { window.removeEventListener('scroll', this._underlineCheck); document.removeEventListener('scroll', this._underlineCheck, true); }
+    if (this._ulResize) window.removeEventListener('resize', this._ulResize);
     if (this._bioResize) window.removeEventListener('resize', this._bioResize);
     if (this._walkTimer) clearInterval(this._walkTimer);
     if (this._walkRO) this._walkRO.disconnect();
@@ -771,7 +805,7 @@ class Component extends DCLogic {
       ],
       team: [
         { name: 'Charles Fried', role: 'Chief Executive Officer', bio: 'Leads firm strategy, partnerships, and portfolio management, bringing experience as a serial software entrepreneur with a track record building deep-tech ventures and scaling technology-led businesses. Focuses on aligning research, infrastructure, capital relationships, and execution into a disciplined institutional platform.', photo: './images/team/aabir.jpg' },
-        { name: 'Alex Nestor Bergmann', role: 'Chief Technology Officer', bio: 'Oversees technology, research infrastructure, and quantitative systems. Brings over a decade of experience in quantitative research, machine learning, and applied mathematics, with a PhD in Applied Mathematics and prior experience as a Research Fellow at the University of Cambridge.', photo: './images/team/alex.jpg' },
+        { name: 'Dr. Alex Nestor-Bergmann', role: 'Chief Technology Officer', bio: 'Oversees technology, research infrastructure, and quantitative systems. Brings over a decade of experience in quantitative research, machine learning, and applied mathematics, with a PhD in Applied Mathematics and prior experience as a Research Fellow at the University of Cambridge.', photo: './images/team/alex.jpg' },
         { name: 'Vincent Drigues', role: 'Chief Financial Officer', bio: 'Oversees finance, treasury, governance, and risk oversight, with experience managing finance and operations across multiple startups. Previously served as CFO of a clinical-stage gene-therapy company and began his career in audit at EY.', photo: './images/team/vincent.jpg' },
         { name: 'Aabir Fauzan', role: 'Senior Quant', bio: 'Focuses on alpha research, portfolio construction, and live strategy management across systematic programs. Works across signal discovery, model validation, risk calibration, and allocation, translating research into production-ready strategies.', photo: './images/team/charles.jpg' }
       ],
